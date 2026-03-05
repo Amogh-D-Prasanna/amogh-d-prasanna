@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amogh D. Prasanna</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='none' stroke='%2300e5ff' stroke-width='1.5' opacity='0.6'/><circle cx='16' cy='16' r='6' fill='none' stroke='%2300e5ff' stroke-width='1'/><circle cx='16' cy='8' r='2.5' fill='%2300e5ff'/><ellipse cx='16' cy='16' rx='12' ry='5' fill='none' stroke='%235b8def' stroke-width='0.8' opacity='0.4' transform='rotate(60 16 16)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Sora:wght@200;300;400;500;600;700&display=swap"
@@ -81,10 +79,10 @@
       opacity: 0;
       transition: opacity 2s ease;
       background: repeating-linear-gradient(90deg,
-          transparent 0px, rgba(0, 229, 255, 0.07) 3px, rgba(0, 229, 255, 0.14) 5px,
-          rgba(0, 229, 255, 0.07) 7px, transparent 9px, transparent 24px,
-          rgba(91, 141, 239, 0.06) 26px, rgba(91, 141, 239, 0.11) 28px,
-          rgba(91, 141, 239, 0.06) 30px, transparent 32px, transparent 52px);
+          transparent 0px, rgba(0, 229, 255, 0.05) 3px, rgba(0, 229, 255, 0.09) 5px,
+          rgba(0, 229, 255, 0.05) 7px, transparent 9px, transparent 24px,
+          rgba(91, 141, 239, 0.04) 26px, rgba(91, 141, 239, 0.07) 28px,
+          rgba(91, 141, 239, 0.04) 30px, transparent 32px, transparent 52px);
       mask-image: radial-gradient(ellipse 55% 45% at 50% 50%, black, transparent);
       -webkit-mask-image: radial-gradient(ellipse 55% 45% at 50% 50%, black, transparent);
     }
@@ -163,20 +161,14 @@
       left: 28px;
       z-index: 100;
       font-family: var(--mono);
-      font-size: 11px;
-      color: var(--t3);
-      letter-spacing: 0.05em;
+      font-size: 10px;
+      color: var(--t4);
+      letter-spacing: 0.06em;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
       opacity: 0;
-      transition: opacity 0.6s;
-      background: rgba(4, 7, 16, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--rule)
+      transition: opacity 0.6s
     }
 
     #hud.on {
@@ -184,26 +176,25 @@
     }
 
     #hud .qs {
-      font-size: 13px;
+      color: var(--cyan);
+      font-size: 11px;
       font-weight: 500;
-      transition: color 0.5s;
-      letter-spacing: 0.02em
+      transition: color 0.5s
     }
 
     #hud .bar {
-      width: 100px;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 2px;
+      width: 90px;
+      height: 2px;
+      background: var(--rule);
+      border-radius: 1px;
       overflow: hidden;
-      margin-top: 3px
+      margin-top: 2px
     }
 
     #hud .fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--cyan), var(--violet));
-      border-radius: 2px;
       transition: width 0.12s
     }
 
@@ -234,19 +225,6 @@
       pointer-events: none;
       z-index: -1
     }
-
-    /* .feynman-q {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--t2);
-      line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 500px;
-      opacity: 0;
-      animation: fu 1s .1s cubic-bezier(.16, 1, .3, 1) forwards
-    } */
-
 
     .feynman-q {
       font-family: var(--serif);
@@ -410,21 +388,11 @@
       font-size: clamp(32px, 3.5vw, 46px);
       line-height: 1.15;
       margin-bottom: 24px;
-      color: var(--t0);
-      transition: color 0.8s
-    }
-
-    .sh .qc {
-      color: var(--cyan);
-      transition: color 0.6s
+      color: var(--t0)
     }
 
     .sh i {
       font-style: italic;
-      color: var(--cyan)
-    }
-
-    .sh.q-color {
       color: var(--cyan)
     }
 
@@ -908,7 +876,7 @@
     .sr {
       opacity: 0;
       transform: translateY(22px);
-      transition: all .2s cubic-bezier(.16, 1, .3, 1)
+      transition: all .75s cubic-bezier(.16, 1, .3, 1)
     }
 
     .sr.v {
@@ -1035,10 +1003,10 @@
       <div class="hero-left">
         <div class="feynman-q">"Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd
           better make it quantum mechanical."</div>
-        <div class="feynman-attr">— Richard P. Feynman, 1981</div>
+        <div class="feynman-attr">— Richard Feynman, 1981</div>
         <h1 class="hero-name">Amogh<br><span class="gr">D. Prasanna</span></h1>
         <div class="hero-id"><b>M.Eng.</b> University of Maryland, College Park<br>Research in Quantum Information
-          Processing, QML &amp; Quantum Error Correction</div>
+          Processing, QML &amp; Error Correction</div>
         <div class="hero-cta"><a href="#proj" class="btn btn-f">View Work</a><a href="#contact" class="btn btn-g">Get in
             Touch</a></div>
         <div class="hero-ket"><b>|ψ⟩</b> = α<b>|0⟩</b> + β<b>|1⟩</b></div>
@@ -1052,13 +1020,12 @@
         <div class="story">
           <p>It was my second year of undergrad. The exam said <strong>Theory of Computation</strong>: Turing machines,
             decidability, the mathematical spine of everything that computes. The result was a resounding failure.</p>
+          <p>That failure carried me from classical computation into the quantum world, where <em>Turing's limits meet
+              Feynman's dreams</em>. Today I'm a Research Assistant at UMD, designing <strong>Quantum Circuit Born
+              Machines</strong> and studying device-independent quantum cryptography. The subject I failed became the
+            subject I now push forward.</p>
           <div class="pull">That same day, I decided: I would research the very field that broke me. If I couldn't pass
             the exam, I'd spend years going deeper than the exam ever asked.</div>
-          <p>That stubbornness carried me from classical computation into the quantum world, where <em>Turing's limits
-              meet Feynman's dreams</em>. <i>Currently,</i> I'm a Research Assistant at UMD, working and researching on
-            <strong>Quantum Information Processing and Theory of Computation</strong>. The subject I failed became the
-            subject I now push forward.</p>
-
         </div>
       </div>
     </section>
@@ -1066,7 +1033,7 @@
     <section id="work" class="sec">
       <div class="card card-w sr">
         <div class="sl">Experience</div>
-        <h2 class="sh q-tint">Work</h2>
+        <h2 class="sh">Work</h2>
         <div class="exp">
           <div class="exp-top"><span class="exp-role">Research Assistant</span><span class="exp-date">Jan 2026 —
               Present</span></div>
@@ -1105,7 +1072,7 @@
     <section id="proj" class="sec">
       <div class="card card-fw sr">
         <div class="sl">Research &amp; Engineering</div>
-        <h2 class="sh q-tint">Projects</h2>
+        <h2 class="sh">Projects</h2>
         <div class="bento">
           <div class="b-card feat">
             <div class="b-tag">Quantum Machine Learning · Active Research</div>
@@ -1148,11 +1115,11 @@
     <section class="sec">
       <div class="card card-w sr">
         <div class="sl">Technical</div>
-        <h2 class="sh q-tint">Skills</h2>
+        <h2 class="sh">Skills</h2>
         <div class="sk-grid">
           <div class="sk">
             <h4>Quantum &amp; Research</h4>
-            <p>Device-Independent QKD, QML, QEC & FTQC, Bell Inequalities</p>
+            <p>Device-Independent QKD, QEC, QML, Bell Inequalities, NIST PQC, Quantum Circuit Born Machines</p>
           </div>
           <div class="sk">
             <h4>Scientific Computing</h4>
@@ -1173,7 +1140,7 @@
     <section class="sec">
       <div class="card card-w sr">
         <div class="sl">Education</div>
-        <h2 class="sh q-tint">Academic Path</h2>
+        <h2 class="sh">Academic Path</h2>
         <div class="edu">
           <div>
             <div class="edu-school">University of Maryland, College Park</div>
@@ -1206,8 +1173,8 @@
 
     <section id="beyond" class="sec">
       <div class="card card-fw sr">
-        <div class="sl">Beyond</div>
-        <h2 class="sh q-tint">Life Outside Work</h2>
+        <div class="sl">Beyond the Lab</div>
+        <h2 class="sh">Life Outside Quantum</h2>
         <div class="beyond-grid">
           <div class="beyond-card">
             <div class="gallery-row">
@@ -1280,10 +1247,10 @@
     renderer.setSize(W(), H()); renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     const scene = new THREE.Scene();
     const cam = new THREE.PerspectiveCamera(50, W() / H(), 0.1, 100);
-    cam.position.set(0, 0, 4.5);
+    cam.position.set(0, 0, 5);
 
     // ════════════ PARTICLE QUBIT ════════════
-    const N = 1600;
+    const N = 1200;
     const geo = new THREE.BufferGeometry();
     const pos = new Float32Array(N * 3), bpos = new Float32Array(N * 3);
     const vel = new Float32Array(N * 3), col = new Float32Array(N * 3);
@@ -1323,21 +1290,13 @@
     pts.position.set(0.6, 0, 0);
     scene.add(pts);
 
-    // // Orbital outlines (thin circles, no solid lines)
-    // const circPts1 = [], circPts2 = [];
-    // for (let i = 0; i <= 128; i++) { const a = i / 128 * Math.PI * 2; circPts1.push(new THREE.Vector3(Math.cos(a) * 1.1, 0, Math.sin(a) * 1.1)); circPts2.push(new THREE.Vector3(Math.cos(a) * 1.1, Math.sin(a) * 0.5, Math.cos(a) * 0.3 + Math.sin(a) * 0.9)) }
-    // const ring1 = new THREE.Line(new THREE.BufferGeometry().setFromPoints(circPts1), new THREE.LineBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .12 }));
-    // ring1.position.set(.6, 0, 0); scene.add(ring1);
-    // const ring2 = new THREE.Line(new THREE.BufferGeometry().setFromPoints(circPts2), new THREE.LineBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .08 }));
-    // ring2.position.set(.6, 0, 0); scene.add(ring2);
-
     // Rings
     const ringGeo = new THREE.TorusGeometry(1.1, .008, 8, 80);
     const ringMat = new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .15 });
     const ring1 = new THREE.Mesh(ringGeo, ringMat);
     ring1.position.set(.6, 0, 0); ring1.rotation.x = Math.PI / 2; scene.add(ring1);
     const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.1, .008, 8, 80), new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .1 }));
-    ring2.position.set(.6, 0, 0); ring2.rotation.x = Math.PI / 4; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
+    ring2.position.set(.6, 0, 0); ring2.rotation.x = Math.PI / 3; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
 
     // ════════════ TRAILS ════════════
     const TN = 600;
@@ -1382,23 +1341,23 @@
 
     // D1: QED vertex — upper left
     addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(v, new THREE.Vector3(.8, .4, 0), 0x5b8def)); g.add(makePhoton(v, new THREE.Vector3(0, -.9, 0), .08, 3, 32, 0x00e5ff)); g.add(makeVtx(v, 0x00e5ff, .05)) },
-      new THREE.Vector3(-2.5, 1.5, -1), { rx: .3, ry: .5, rz: .1, sx: .15, sy: .1, speed: 1.8 }, 0);
+      new THREE.Vector3(-2.5, 1.5, -1), { rx: .3, ry: .5, rz: .1, sx: .15, sy: .1, speed: .7 }, 0);
 
     // D2: Vacuum polarization — right
     addDiag(g => { const a = new THREE.Vector3(-.6, 0, 0), b = new THREE.Vector3(.6, 0, 0); g.add(makePhoton(new THREE.Vector3(-1.4, 0, 0), a, .06, 3, 24, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1.4, 0, 0), .06, 3, 24, 0x00e5ff)); const lp = []; for (let i = 0; i <= 48; i++) { const t = i / 48 * Math.PI * 2; lp.push(new THREE.Vector3(Math.cos(t) * .6, Math.sin(t) * .4, 0)) } g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(lp), new THREE.LineBasicMaterial({ color: 0x9678f6, transparent: true, opacity: .35 }))); g.add(makeVtx(a, 0x9678f6, .04)); g.add(makeVtx(b, 0x9678f6, .04)) },
-      new THREE.Vector3(2.8, .8, -.5), { rx: .2, ry: .4, rz: .15, sx: .12, sy: .18, speed: 1.3 }, .2);
+      new THREE.Vector3(2.8, .8, -.5), { rx: .2, ry: .4, rz: .15, sx: .12, sy: .18, speed: .5 }, .2);
 
     // D3: Compton — lower right
     addDiag(g => { const a = new THREE.Vector3(-.4, -.4, 0), b = new THREE.Vector3(.4, .4, 0); g.add(makeFermion(new THREE.Vector3(-1, -.8, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1, .8, 0), 0x5b8def)); g.add(makePhoton(new THREE.Vector3(-1, .4, 0), a, .06, 3, 28, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1, -.4, 0), .06, 3, 28, 0x00e5ff)); g.add(makeVtx(a, 0x3ae8b0, .045)); g.add(makeVtx(b, 0x3ae8b0, .045)) },
-      new THREE.Vector3(2, -1.5, -.8), { rx: .4, ry: .3, rz: .2, sx: .1, sy: .15, speed: 1.5 }, .4);
+      new THREE.Vector3(2, -1.5, -.8), { rx: .4, ry: .3, rz: .2, sx: .1, sy: .15, speed: .6 }, .4);
 
     // D4: Vertex correction — lower left
     addDiag(g => { const a = new THREE.Vector3(-.5, .3, 0), b = new THREE.Vector3(.5, .3, 0), c = new THREE.Vector3(0, -.5, 0); g.add(makeFermion(new THREE.Vector3(-1.2, .6, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1.2, .6, 0), 0x5b8def)); g.add(makePhoton(a, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(b, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(c, new THREE.Vector3(0, -1.2, 0), .06, 4, 28, 0x00e5ff)); g.add(makeVtx(a, 0x9678f6, .03)); g.add(makeVtx(b, 0x9678f6, .03)); g.add(makeVtx(c, 0xe06caa, .045)) },
-      new THREE.Vector3(-2, -1.8, -1.2), { rx: .35, ry: .6, rz: .12, sx: .18, sy: .08, speed: 1.1 }, .55);
+      new THREE.Vector3(-2, -1.8, -1.2), { rx: .35, ry: .6, rz: .12, sx: .18, sy: .08, speed: .45 }, .55);
 
     // D5: Pair annihilation — far right (always visible)
     addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(new THREE.Vector3(-.8, -.6, 0), v, 0x9678f6)); g.add(makePhoton(v, new THREE.Vector3(.9, .4, 0), .07, 3, 28, 0x00e5ff)); g.add(makePhoton(v, new THREE.Vector3(.9, -.4, 0), .07, 3, 28, 0x00e5ff)); g.add(makeVtx(v, 0x3ae8b0, .05)) },
-      new THREE.Vector3(3.2, -.3, .3), { rx: .25, ry: .35, rz: .18, sx: .2, sy: .12, speed: 1.4 }, 0);
+      new THREE.Vector3(3.2, -.3, .3), { rx: .25, ry: .35, rz: .18, sx: .2, sy: .12, speed: .55 }, 0);
 
     // ════════════ MOUSE ════════════
     let mx = 0, my = 0, mouseWorld = new THREE.Vector3(100, 100, 100);
@@ -1409,14 +1368,10 @@
     let sp = 0;
     const fringes = document.getElementById('fringes'), hudEl = document.getElementById('hud');
     const qsEl = document.getElementById('qs'), cohEl = document.getElementById('coh'), hfEl = document.getElementById('hfill');
-    const stLbl = ['|0⟩ coherent', 'H|0⟩ superposition', '|Φ⁺⟩ entangled', 'M ↦|0⟩ measured', 'ρ mixed · decohered'];
+    const stLbl = ['|0⟩ coherent', 'H|0⟩ superposition', '|Φ⁺⟩ entangled', 'M→|0⟩ measured', 'ρ mixed · decohered'];
     const stCol = [[0, .85, 1], [.36, .55, .94], [.59, .47, .96], [.23, .91, .69], [.38, .43, .56]];
 
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY, d = document.documentElement.scrollHeight - H(); sp = Math.max(0, Math.min(1, s / d)); hfEl.style.width = (sp * 100) + '%'; cohEl.textContent = Math.max(0, Math.round((1 - sp) * 100)) + '%'; const si = Math.min(4, Math.floor(sp * 5)); qsEl.textContent = stLbl[si]; const sc = stCol[si]; const qColor = `rgb(${sc[0] * 255 | 0},${sc[1] * 255 | 0},${sc[2] * 255 | 0})`; qsEl.style.color = qColor; if (s > 150 && sp < .92) hudEl.classList.add('on'); else hudEl.classList.remove('on'); if (sp > .15 && sp < .5) fringes.classList.add('on'); else fringes.classList.remove('on');
-      // Sync section titles with qubit state color
-      document.querySelectorAll('.q-tint').forEach(el => { el.style.color = qColor });
-    });
+    window.addEventListener('scroll', () => { const s = window.scrollY, d = document.documentElement.scrollHeight - H(); sp = Math.max(0, Math.min(1, s / d)); hfEl.style.width = (sp * 100) + '%'; cohEl.textContent = Math.max(0, Math.round((1 - sp) * 100)) + '%'; const si = Math.min(4, Math.floor(sp * 5)); qsEl.textContent = stLbl[si]; const sc = stCol[si]; qsEl.style.color = `rgb(${sc[0] * 255 | 0},${sc[1] * 255 | 0},${sc[2] * 255 | 0})`; if (s > 150 && sp < .92) hudEl.classList.add('on'); else hudEl.classList.remove('on'); if (sp > .15 && sp < .5) fringes.classList.add('on'); else fringes.classList.remove('on') });
 
     // ════════════ ANIMATE ════════════
     let time = 0;
@@ -1436,19 +1391,19 @@
 
       trails.visible = superPhase && chaos < .5;
 
-      // Diagrams: each floats independently — wider drift, more tumble
-      const dp = .05 * Math.sin(time * 2.5);
+      // Diagrams: each floats on its own orbit
+      const dp = .04 * Math.sin(time * 2.5);
       diagrams.forEach(dg => {
         const u = dg.userData;
         if (u.showAt > 0) { dg.visible = sp > u.showAt; if (!dg.visible) return }
         const t = time * u.orbit.speed;
-        dg.position.x = u.basePos.x + Math.sin(t * u.orbit.ry) * u.orbit.sx * 2.5;
-        dg.position.y = u.basePos.y + Math.cos(t * u.orbit.rx) * u.orbit.sy * 2.5;
-        dg.position.z = u.basePos.z + Math.sin(t * u.orbit.rz * .7) * .3;
-        dg.rotation.x = Math.sin(t * u.orbit.rx) * .25;
-        dg.rotation.y = Math.sin(t * u.orbit.ry) * .3;
-        dg.rotation.z = Math.sin(t * u.orbit.rz) * .15;
-        const baseOp = u.showAt > 0 ? Math.min(.5, (sp - u.showAt) * .9) : .35 + sp * .15;
+        dg.position.x = u.basePos.x + Math.sin(t * u.orbit.ry) * u.orbit.sx;
+        dg.position.y = u.basePos.y + Math.cos(t * u.orbit.rx) * u.orbit.sy;
+        dg.position.z = u.basePos.z + Math.sin(t * u.orbit.rz * .7) * .1;
+        dg.rotation.x = Math.sin(t * u.orbit.rx) * .12;
+        dg.rotation.y = Math.sin(t * u.orbit.ry) * .15;
+        dg.rotation.z = Math.sin(t * u.orbit.rz) * .08;
+        const baseOp = u.showAt > 0 ? Math.min(.45, (sp - u.showAt) * .8) : .3 + sp * .15;
         dg.traverse(c => { if (c.material) c.material.opacity = baseOp + dp });
       });
 
@@ -1485,9 +1440,8 @@
       if (trails.visible) { tGeo.attributes.position.needsUpdate = true; for (let i = 0; i < TN; i++) { tCol[i * 3] = cr * .4; tCol[i * 3 + 1] = cg * .4; tCol[i * 3 + 2] = cb * .5 } tGeo.attributes.color.needsUpdate = true }
       pts.rotation.y = time * rotSpd + mx * .08; pts.rotation.x = my * .04 + Math.sin(time * .2) * .02;
       trails.rotation.copy(pts.rotation);
-      ring1.material.opacity = .12 * (1 - chaos); ring2.material.opacity = .08 * (1 - chaos);
-      ring1.rotation.y = time * .12; ring2.rotation.y = time * .1;
-
+      ring1.material.opacity = .15 * (1 - chaos); ring2.material.opacity = .1 * (1 - chaos);
+      ring1.rotation.z = time * .12; ring2.rotation.y = time * .1;
       renderer.render(scene, cam);
     }
     animate();
