@@ -876,17 +876,43 @@
       flex-wrap: wrap
     }
 
-    .cl {
+    /* .cl {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 14px;
       padding: 13px 24px;
-      border: 1px solid var(--rule);
+      border: 2px solid var(--rule);
       border-radius: 4px;
       color: var(--t3);
       text-decoration: none;
       transition: all .3s;
       background: rgba(2, 3, 6, 0.5)
+    } */
+
+    .cl {
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 13px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all .3s;
+      background: rgba(2, 3, 6, 0.5);
+      text-shadow:
+        0 0 4px #989898,
+        0 0 10px #989898,
+        0 0 20px #989898,
+        0 0 40px rgba(200, 220, 255, 0.1);
     }
+
+    .footer.note {
+  color: #dfdfdf;
+  text-shadow:
+    0 0 4px #989898,
+    0 0 10px #989898,
+    0 0 20px rgba(200, 220, 255, 0.8);
+  opacity: 1;
+}
 
     .cl:hover {
       color: var(--cyan);
@@ -1057,7 +1083,8 @@
           <p>That stubbornness carried me from classical computation into the quantum world, where <em>Turing's limits
               meet Feynman's dreams</em>. <i>Currently,</i> I'm a Research Assistant at UMD, working and researching on
             <strong>Quantum Information Processing and Theory of Computation</strong>. The subject I failed became the
-            subject I now push forward.</p>
+            subject I now push forward.
+          </p>
 
         </div>
       </div>
@@ -1268,7 +1295,7 @@
       </div>
     </section>
 
-    <footer><span>© 2026 Amogh D. Prasanna</span><span>|ψ⟩ = α|0⟩ + β|1⟩</span></footer>
+    <footer class="footer note"><span>© 2026 Amogh D. Prasanna</span><span>|ψ⟩ = α|0⟩ + β|1⟩</span></footer>
   </div>
 
   <script>
