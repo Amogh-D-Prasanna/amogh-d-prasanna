@@ -72,7 +72,6 @@
       pointer-events: none
     }
 
-    /* Fringes — 4x brighter */
     #fringes {
       position: fixed;
       inset: 0;
@@ -80,13 +79,9 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 2s ease;
-      background: repeating-linear-gradient(90deg,
-          transparent 0px, rgba(0, 229, 255, 0.07) 3px, rgba(0, 229, 255, 0.14) 5px,
-          rgba(0, 229, 255, 0.07) 7px, transparent 9px, transparent 24px,
-          rgba(91, 141, 239, 0.06) 26px, rgba(91, 141, 239, 0.11) 28px,
-          rgba(91, 141, 239, 0.06) 30px, transparent 32px, transparent 52px);
+      background: repeating-linear-gradient(90deg, transparent 0px, rgba(0, 229, 255, 0.07) 3px, rgba(0, 229, 255, 0.14) 5px, rgba(0, 229, 255, 0.07) 7px, transparent 9px, transparent 24px, rgba(91, 141, 239, 0.06) 26px, rgba(91, 141, 239, 0.11) 28px, rgba(91, 141, 239, 0.06) 30px, transparent 32px, transparent 52px);
       mask-image: radial-gradient(ellipse 55% 45% at 50% 50%, black, transparent);
-      -webkit-mask-image: radial-gradient(ellipse 55% 45% at 50% 50%, black, transparent);
+      -webkit-mask-image: radial-gradient(ellipse 55% 45% at 50% 50%, black, transparent)
     }
 
     #fringes.on {
@@ -207,7 +202,6 @@
       transition: width 0.12s
     }
 
-    /* HERO */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -235,19 +229,6 @@
       z-index: -1
     }
 
-    /* .feynman-q {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--t2);
-      line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 500px;
-      opacity: 0;
-      animation: fu 1s .1s cubic-bezier(.16, 1, .3, 1) forwards
-    } */
-
-
     .feynman-q {
       font-family: var(--serif);
       font-style: italic;
@@ -263,7 +244,7 @@
     .feynman-attr {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--t3);
+      color: var(--t4);
       letter-spacing: 0.08em;
       margin-bottom: 52px;
       opacity: 0;
@@ -414,17 +395,8 @@
       transition: color 0.8s
     }
 
-    .sh .qc {
-      color: var(--cyan);
-      transition: color 0.6s
-    }
-
     .sh i {
       font-style: italic;
-      color: var(--cyan)
-    }
-
-    .sh.q-color {
       color: var(--cyan)
     }
 
@@ -699,7 +671,7 @@
       margin-bottom: 10px
     }
 
-    /* Beyond — multi-image gallery per card */
+    /* Gallery with real images */
     .beyond-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -735,7 +707,6 @@
     .gallery-slot {
       min-width: 100%;
       aspect-ratio: 3/4;
-      height: 380px;
       min-height: 280px;
       max-height: 420px;
       background: var(--deep);
@@ -746,32 +717,25 @@
       overflow: hidden
     }
 
+    /* .gallery-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s
+    } */
+
     .gallery-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center center;
       display: block;
       transition: transform 0.4s;
     }
 
-    .gallery-slot::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none
-    }
-
-    .beyond-card:nth-child(1) .gallery-slot::after {
-      background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), transparent 60%)
-    }
-
-    .beyond-card:nth-child(2) .gallery-slot::after {
-      background: linear-gradient(135deg, rgba(150, 120, 246, 0.05), transparent 60%)
-    }
-
-    .beyond-card:nth-child(3) .gallery-slot::after {
-      background: linear-gradient(135deg, rgba(224, 108, 170, 0.05), transparent 60%)
+    .gallery-slot:hover img {
+      transform: scale(1.05)
     }
 
     .gallery-dots {
@@ -786,7 +750,8 @@
       height: 5px;
       border-radius: 50%;
       background: var(--t4);
-      transition: background 0.3s
+      transition: background 0.3s;
+      cursor: pointer
     }
 
     .gallery-dots span.active {
@@ -834,7 +799,122 @@
       opacity: 0.7
     }
 
-    /* Contact — dark panel behind to prevent particle blowout */
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px)
+    }
+
+    #lightbox.open {
+      display: flex
+    }
+
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.5)
+    }
+
+    #lightbox .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--t2);
+      cursor: pointer;
+      padding: 8px 14px;
+      border: 1px solid var(--rule-hi);
+      border-radius: 6px;
+      background: rgba(4, 7, 16, 0.6);
+      transition: all 0.3s
+    }
+
+    #lightbox .lb-close:hover {
+      color: var(--cyan);
+      border-color: var(--cyan)
+    }
+
+    #lightbox .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      color: var(--t2);
+      cursor: pointer;
+      padding: 12px;
+      transition: color 0.3s;
+      user-select: none
+    }
+
+    #lightbox .lb-nav:hover {
+      color: var(--cyan)
+    }
+
+    #lightbox .lb-prev {
+      left: 16px
+    }
+
+    #lightbox .lb-next {
+      right: 16px
+    }
+
+    /* Double-slit experiment */
+    .dslit-wrap {
+      margin-top: 32px;
+      padding: 28px;
+      background: rgba(6, 10, 20, 0.5);
+      border: 1px solid var(--rule);
+      border-radius: 12px
+    }
+
+    .dslit-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 6px
+    }
+
+    .dslit-sub {
+      font-size: 14px;
+      color: var(--t3);
+      margin-bottom: 14px
+    }
+
+    #dslit-canvas {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      display: block;
+      background: var(--void)
+    }
+
+    .dslit-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--t3)
+    }
+
+    .dslit-stats b {
+      color: var(--cyan);
+      font-weight: 500
+    }
+
     #contact {
       text-align: center;
       padding: 120px 48px;
@@ -884,99 +964,16 @@
       flex-wrap: wrap
     }
 
-    /* .cl {
+    .cl {
       font-family: var(--mono);
-      font-size: 14px;
+      font-size: 12px;
       padding: 13px 24px;
-      border: 2px solid var(--rule);
+      border: 1px solid var(--rule);
       border-radius: 4px;
       color: var(--t3);
       text-decoration: none;
       transition: all .3s;
       background: rgba(2, 3, 6, 0.5)
-    } */
-
-    #lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      background: rgba(0, 0, 0, 0.92);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-      backdrop-filter: blur(8px);
-    }
-
-    #lightbox.open {
-      display: flex
-    }
-
-    #lightbox img {
-      max-width: 92vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px
-    }
-
-    #lightbox .lb-close {
-      position: absolute;
-      top: 20px;
-      right: 28px;
-      font-family: var(--mono);
-      font-size: 14px;
-      color: var(--t2);
-      cursor: pointer;
-      padding: 8px 14px;
-      border: 1px solid var(--rule-hi);
-      border-radius: 6px;
-      background: rgba(4, 7, 16, 0.6);
-      transition: all 0.3s
-    }
-
-    #lightbox .lb-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 28px;
-      color: var(--t2);
-      cursor: pointer;
-      padding: 12px;
-      user-select: none
-    }
-
-    #lightbox .lb-prev {
-      left: 16px
-    }
-
-    #lightbox .lb-next {
-      right: 16px
-    }
-
-    .cl {
-      font-family: var(--mono);
-      font-size: 13px;
-      padding: 13px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 4px;
-      color: #ffffff;
-      text-decoration: none;
-      transition: all .3s;
-      background: rgba(2, 3, 6, 0.5);
-      text-shadow:
-        0 0 4px #989898,
-        0 0 10px #989898,
-        0 0 20px #989898,
-        0 0 40px rgba(200, 220, 255, 0.1);
-    }
-
-    .footer.note {
-      color: #dfdfdf;
-      text-shadow:
-        0 0 4px #989898,
-        0 0 10px #989898,
-        0 0 20px rgba(200, 220, 255, 0.8);
-      opacity: 1;
     }
 
     .cl:hover {
@@ -1103,14 +1100,16 @@
 </head>
 
 <body>
+  <canvas id="c3"></canvas>
+  <div id="fringes"></div>
+
+  <!-- Lightbox -->
   <div id="lightbox">
     <div class="lb-close">ESC</div>
     <div class="lb-nav lb-prev">&#8249;</div>
     <div class="lb-nav lb-next">&#8250;</div>
     <img id="lb-img" src="" alt="">
   </div>
-  <canvas id="c3"></canvas>
-  <div id="fringes"></div>
 
   <div id="hud">
     <div class="qs" id="qs">|0⟩ coherent</div>
@@ -1127,6 +1126,7 @@
   </nav>
 
   <div id="page">
+
     <section id="hero">
       <div class="hero-left">
         <div class="feynman-q">"Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd
@@ -1155,7 +1155,6 @@
             <strong>Quantum Information Processing and Theory of Computation</strong>. The subject I failed became the
             subject I now push forward.
           </p>
-
         </div>
       </div>
     </section>
@@ -1249,7 +1248,7 @@
         <div class="sk-grid">
           <div class="sk">
             <h4>Quantum &amp; Research</h4>
-            <p>Device-Independent QKD, QML, QEC & FTQC, Bell Inequalities</p>
+            <p>Device-Independent QKD, QML, QEC &amp; FTQC, Bell Inequalities</p>
           </div>
           <div class="sk">
             <h4>Scientific Computing</h4>
@@ -1310,10 +1309,18 @@
           <!-- Art / Painting -->
           <div class="beyond-card">
             <div class="gallery-row" data-gallery="art">
-              <div class="gallery-slot" data-full="images/IMG_6969.JPG"><img src="images/IMG_6969.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_3888.jpg"><img src="images/IMG_3888.jpg" alt="Photo"
-                  loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0686.JPG"><img src="../images/IMG_0686.JPG"
+                  alt="Painting" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0687.JPG"><img src="../images/IMG_0687.JPG"
+                  alt="Painting" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0688.JPG"><img src="../images/IMG_0688.JPG"
+                  alt="Painting" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0689.JPG"><img src="../images/IMG_0689.JPG"
+                  alt="Painting" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0690.JPG"><img src="../images/IMG_0690.JPG"
+                  alt="Painting" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0691.JPG"><img src="../images/IMG_0691.JPG"
+                  alt="Painting" loading="lazy"></div>
             </div>
             <div class="gallery-dots"><span
                 class="active"></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -1327,42 +1334,23 @@
           <!-- Photography -->
           <div class="beyond-card">
             <div class="gallery-row" data-gallery="photo">
-              <div class="gallery-slot" data-full="images/IMG_0700.JPG"><img src="images/IMG_0700.JPG" alt="Boxing"
+              <div class="gallery-slot" data-full="../images/IMG_0692.JPG"><img src="../images/IMG_0692.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0699.JPG"><img src="images/IMG_0699.JPG" alt="Photo"
+              <div class="gallery-slot" data-full="../images/IMG_0693.JPG"><img src="../images/IMG_0693.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0686.JPG"><img src="images/IMG_0686.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0694.JPG"><img src="../images/IMG_0694.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0687.JPG"><img src="images/IMG_0687.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0695.JPG"><img src="../images/IMG_0695.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0688.JPG"><img src="images/IMG_0688.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0696.JPG"><img src="../images/IMG_0696.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0689.JPG"><img src="images/IMG_0689.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0697.JPG"><img src="../images/IMG_0697.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0690.JPG"><img src="images/IMG_0690.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0698.JPG"><img src="../images/IMG_0698.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0691.JPG"><img src="images/IMG_0691.JPG" alt="Painting"
+              <div class="gallery-slot" data-full="../images/IMG_0699.JPG"><img src="../images/IMG_0699.JPG" alt="Photo"
                   loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0692.JPG"><img src="images/IMG_0692.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0693.JPG"><img src="images/IMG_0693.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0694.JPG"><img src="images/IMG_0694.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0695.JPG"><img src="images/IMG_0695.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0696.JPG"><img src="images/IMG_0696.JPG" alt="Photo"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0697.JPG"><img src="images/IMG_0697.JPG" alt="Photo"
-                  loading="lazy"></div>
-
-              <div class="gallery-slot" data-full="images/IMG_0701.JPG"><img src="images/IMG_0701.JPG" alt="Boxing"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0702.JPG"><img src="images/IMG_0702.JPG" alt="Boxing"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0703.JPG"><img src="images/IMG_0703.JPG" alt="Boxing"
-                  loading="lazy"></div>
-              <div class="gallery-slot" data-full="images/IMG_0704.JPG"><img src="images/IMG_0704.JPG" alt="Boxing"
+              <div class="gallery-slot" data-full="../images/IMG_3888.jpg"><img src="../images/IMG_3888.jpg" alt="Photo"
                   loading="lazy"></div>
             </div>
             <div class="gallery-dots"><span
@@ -1379,289 +1367,62 @@
           <!-- Boxing -->
           <div class="beyond-card">
             <div class="gallery-row" data-gallery="box">
-              <div class="gallery-slot"
-                data-full="images/psbattle-cat-standing-in-a-boxing-position-v0-xn6h5e0ixbyz.jpg.webp"><img
-                  src="images/psbattle-cat-standing-in-a-boxing-position-v0-xn6h5e0ixbyz.jpg.webp" alt="Boxing"
-                  loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0700.JPG"><img src="../images/IMG_0700.JPG"
+                  alt="Boxing" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0701.JPG"><img src="../images/IMG_0701.JPG"
+                  alt="Boxing" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0702.JPG"><img src="../images/IMG_0702.JPG"
+                  alt="Boxing" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0703.JPG"><img src="../images/IMG_0703.JPG"
+                  alt="Boxing" loading="lazy"></div>
+              <div class="gallery-slot" data-full="../images/IMG_0704.JPG"><img src="../images/IMG_0704.JPG"
+                  alt="Boxing" loading="lazy"></div>
             </div>
             <div class="gallery-dots"><span class="active"></span><span></span><span></span><span></span><span></span>
             </div>
             <div class="beyond-body">
               <div class="beyond-label">Boxing</div>
               <div class="beyond-title">In the Ring</div>
-              <div class="beyond-text">Schrödinger's cat -> Boxing and Not Boxing.</div>
+              <div class="beyond-text">Discipline, timing, and reading your opponent: not unlike debugging a quantum
+                circuit under noise.</div>
             </div>
           </div>
         </div>
+
+        <!-- Double-Slit Visitor Experiment -->
+        <div class="dslit-wrap">
+          <div class="dslit-title">Double-Slit Experiment</div>
+          <div class="dslit-sub">Each visit fires a photon through a double slit. Over time, the interference pattern
+            emerges.</div>
+          <canvas id="dslit-canvas"></canvas>
+          <div class="dslit-stats">
+            <span>Photons detected: <b id="ds-count">0</b></span>
+            <span>Pattern: <b id="ds-pattern">building...</b></span>
+          </div>
+        </div>
       </div>
-  </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <div class="sl sr" style="text-align:center">Let's Connect</div>
-    <h2 class="ct-h sr">Interested in <span class="gr">quantum</span> research?</h2>
-    <p class="ct-sub sr">Open to collaborations, discussions, and research opportunities in quantum information
-      processing.</p>
-    <div class="ct-links sr">
-      <a href="mailto:amoghdp@umd.edu" class="cl">amoghdp@umd.edu</a>
-      <a href="tel:2029410134" class="cl">202-941-0134</a>
-      <a href="https://linkedin.com/in/amogh-d-p" class="cl" target="_blank">LinkedIn</a>
-      <a href="https://github.com/Amogh-D-Prasanna" class="cl" target="_blank">GitHub</a>
-    </div>
-  </section>
+    <section id="contact">
+      <div class="sl sr" style="text-align:center">Let's Connect</div>
+      <h2 class="ct-h sr">Interested in <span class="gr">quantum</span> research?</h2>
+      <p class="ct-sub sr">Open to collaborations, discussions, and research opportunities in quantum information
+        processing.</p>
+      <div class="ct-links sr">
+        <a href="mailto:amoghdp@umd.edu" class="cl">amoghdp@umd.edu</a>
+        <a href="tel:2029410134" class="cl">202-941-0134</a>
+        <a href="https://linkedin.com/in/amogh-d-p" class="cl" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Amogh-D-Prasanna" class="cl" target="_blank">GitHub</a>
+      </div>
+    </section>
 
-  <footer class="footer note"><span>© 2026 Amogh D. Prasanna</span><span>|ψ⟩ = α|0⟩ + β|1⟩</span></footer>
+    <footer><span>© 2026 Amogh D. Prasanna</span><span>|ψ⟩ = α|0⟩ + β|1⟩</span></footer>
   </div>
 
   <script>
     const W = () => window.innerWidth, H = () => window.innerHeight;
 
-    // ═══ THREE.JS QUANTUM FIELD — CLEAN REWRITE ═══
-    const canvas = document.getElementById('c3');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setSize(W(), H()); renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(50, W() / H(), 0.1, 100);
-    cam.position.set(0, 0, 4.5);
-
-    // ════════════ PARTICLE QUBIT ════════════
-    const N = 1600;
-    const geo = new THREE.BufferGeometry();
-    const pos = new Float32Array(N * 3), bpos = new Float32Array(N * 3);
-    const vel = new Float32Array(N * 3), col = new Float32Array(N * 3);
-    const sz = new Float32Array(N), ph = new Float32Array(N);
-    const prevPos = new Float32Array(N * 3);
-
-    for (let i = 0; i < N; i++) {
-      const th = Math.random() * Math.PI * 2, phi = Math.acos(2 * Math.random() - 1);
-      const r = 1.0 + Math.random() * 0.15;
-      const x = r * Math.sin(phi) * Math.cos(th), y = r * Math.sin(phi) * Math.sin(th), z = r * Math.cos(phi);
-      pos[i * 3] = bpos[i * 3] = prevPos[i * 3] = x;
-      pos[i * 3 + 1] = bpos[i * 3 + 1] = prevPos[i * 3 + 1] = y;
-      pos[i * 3 + 2] = bpos[i * 3 + 2] = prevPos[i * 3 + 2] = z;
-      vel[i * 3] = (Math.random() - .5) * .0025; vel[i * 3 + 1] = (Math.random() - .5) * .0025; vel[i * 3 + 2] = (Math.random() - .5) * .0025;
-      col[i * 3] = 0; col[i * 3 + 1] = 0.85; col[i * 3 + 2] = 1;
-      sz[i] = 1.5 + Math.random() * 2;
-      ph[i] = Math.random() * Math.PI * 2;
-    }
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-    geo.setAttribute('size', new THREE.BufferAttribute(sz, 1));
-
-    // NormalBlending prevents white blowout
-    const ptMat = new THREE.ShaderMaterial({
-      vertexShader: `
-    attribute float size; attribute vec3 color; varying vec3 vC;
-    void main(){ vC=color; vec4 mv=modelViewMatrix*vec4(position,1.);
-    gl_PointSize=size*(100./-mv.z); gl_Position=projectionMatrix*mv; }`,
-      fragmentShader: `
-    varying vec3 vC;
-    void main(){ float d=length(gl_PointCoord-vec2(.5)); if(d>.5)discard;
-    float core=1.-smoothstep(0.,.18,d); float halo=1.-smoothstep(.1,.5,d);
-    gl_FragColor=vec4(vC, core*.7+halo*.15); }`,
-      transparent: true, depthWrite: false, blending: THREE.NormalBlending
-    });
-    const pts = new THREE.Points(geo, ptMat);
-    pts.position.set(0.6, 0, 0);
-    scene.add(pts);
-
-    // // Orbital outlines (thin circles, no solid lines)
-    // const circPts1 = [], circPts2 = [];
-    // for (let i = 0; i <= 128; i++) { const a = i / 128 * Math.PI * 2; circPts1.push(new THREE.Vector3(Math.cos(a) * 1.1, 0, Math.sin(a) * 1.1)); circPts2.push(new THREE.Vector3(Math.cos(a) * 1.1, Math.sin(a) * 0.5, Math.cos(a) * 0.3 + Math.sin(a) * 0.9)) }
-    // const ring1 = new THREE.Line(new THREE.BufferGeometry().setFromPoints(circPts1), new THREE.LineBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .12 }));
-    // ring1.position.set(.6, 0, 0); scene.add(ring1);
-    // const ring2 = new THREE.Line(new THREE.BufferGeometry().setFromPoints(circPts2), new THREE.LineBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .08 }));
-    // ring2.position.set(.6, 0, 0); scene.add(ring2);
-
-    // Rings
-    const ringGeo = new THREE.TorusGeometry(1.1, .008, 8, 80);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .15 });
-    const ring1 = new THREE.Mesh(ringGeo, ringMat);
-    ring1.position.set(.6, 0, 0); ring1.rotation.x = Math.PI / 2; scene.add(ring1);
-    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.1, .008, 8, 80), new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .1 }));
-    ring2.position.set(.6, 0, 0); ring2.rotation.x = Math.PI / 4; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
-
-    // ════════════ TRAILS ════════════
-    const TN = 600;
-    const tGeo = new THREE.BufferGeometry();
-    const tPos = new Float32Array(TN * 3), tCol = new Float32Array(TN * 3), tSz = new Float32Array(TN);
-    for (let i = 0; i < TN; i++) { tPos[i * 3] = pos[i * 3]; tPos[i * 3 + 1] = pos[i * 3 + 1]; tPos[i * 3 + 2] = pos[i * 3 + 2]; tCol[i * 3] = 0; tCol[i * 3 + 1] = .5; tCol[i * 3 + 2] = .8; tSz[i] = .8 + Math.random() }
-    tGeo.setAttribute('position', new THREE.BufferAttribute(tPos, 3)); tGeo.setAttribute('color', new THREE.BufferAttribute(tCol, 3)); tGeo.setAttribute('size', new THREE.BufferAttribute(tSz, 1));
-    const trailMat = new THREE.ShaderMaterial({
-      vertexShader: `attribute float size;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_PointSize=size*(80./-mv.z);gl_Position=projectionMatrix*mv;}`,
-      fragmentShader: `varying vec3 vC;void main(){float d=length(gl_PointCoord-vec2(.5));if(d>.5)discard;gl_FragColor=vec4(vC,smoothstep(.5,.1,d)*.2);}`,
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
-    });
-    const trails = new THREE.Points(tGeo, trailMat); trails.visible = false; trails.position.set(.6, 0, 0); scene.add(trails);
-
-    // ════════════ FEYNMAN DIAGRAMS — EACH FLOATS INDEPENDENTLY ════════════
-    function makePhoton(s, e, amp, freq, segs, hex) {
-      const dir = new THREE.Vector3().subVectors(e, s); const len = dir.length(); dir.normalize();
-      const up = new THREE.Vector3(0, 1, 0); if (Math.abs(dir.dot(up)) > .99) up.set(1, 0, 0);
-      const perp = new THREE.Vector3().crossVectors(dir, up).normalize();
-      const v = []; for (let i = 0; i <= segs; i++) { const t = i / segs; const b = new THREE.Vector3().copy(s).addScaledVector(dir, t * len); b.addScaledVector(perp, Math.sin(t * Math.PI * 2 * freq) * amp); v.push(b) }
-      return new THREE.Line(new THREE.BufferGeometry().setFromPoints(v), new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .4 }));
-    }
-    function makeFermion(s, e, hex) {
-      const g = new THREE.BufferGeometry().setFromPoints([s, e]);
-      const l = new THREE.Line(g, new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .35 }));
-      const mid = new THREE.Vector3().lerpVectors(s, e, .55); const d = new THREE.Vector3().subVectors(e, s).normalize();
-      const up = new THREE.Vector3(0, 1, 0); if (Math.abs(d.dot(up)) > .99) up.set(1, 0, 0);
-      const p = new THREE.Vector3().crossVectors(d, up).normalize();
-      const ag = new THREE.BufferGeometry().setFromPoints([mid.clone().addScaledVector(d, -.07).addScaledVector(p, .035), mid.clone(), mid.clone().addScaledVector(d, -.07).addScaledVector(p, -.035)]);
-      const grp = new THREE.Group(); grp.add(l);
-      grp.add(new THREE.Line(ag, new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .5 })));
-      return grp;
-    }
-    function makeVtx(p, hex, r) { const m = new THREE.Mesh(new THREE.SphereGeometry(r || .04, 10, 10), new THREE.MeshBasicMaterial({ color: hex, transparent: true, opacity: .6 })); m.position.copy(p); return m }
-
-    const diagrams = [];
-    function addDiag(buildFn, basePos, orbit, showAt) {
-      const g = new THREE.Group(); buildFn(g); g.position.copy(basePos);
-      g.userData = { orbit, showAt, basePos: basePos.clone() };
-      scene.add(g); diagrams.push(g); if (showAt > 0) g.visible = false;
-    }
-
-    // D1: QED vertex — upper left
-    addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(v, new THREE.Vector3(.8, .4, 0), 0x5b8def)); g.add(makePhoton(v, new THREE.Vector3(0, -.9, 0), .08, 3, 32, 0x00e5ff)); g.add(makeVtx(v, 0x00e5ff, .05)) },
-      new THREE.Vector3(-2.5, 1.5, -1), { rx: .3, ry: .5, rz: .1, sx: .15, sy: .1, speed: 1.8 }, 0);
-
-    // D2: Vacuum polarization — right
-    addDiag(g => { const a = new THREE.Vector3(-.6, 0, 0), b = new THREE.Vector3(.6, 0, 0); g.add(makePhoton(new THREE.Vector3(-1.4, 0, 0), a, .06, 3, 24, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1.4, 0, 0), .06, 3, 24, 0x00e5ff)); const lp = []; for (let i = 0; i <= 48; i++) { const t = i / 48 * Math.PI * 2; lp.push(new THREE.Vector3(Math.cos(t) * .6, Math.sin(t) * .4, 0)) } g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(lp), new THREE.LineBasicMaterial({ color: 0x9678f6, transparent: true, opacity: .35 }))); g.add(makeVtx(a, 0x9678f6, .04)); g.add(makeVtx(b, 0x9678f6, .04)) },
-      new THREE.Vector3(2.8, .8, -.5), { rx: .2, ry: .4, rz: .15, sx: .12, sy: .18, speed: 1.3 }, .2);
-
-    // D3: Compton — lower right
-    addDiag(g => { const a = new THREE.Vector3(-.4, -.4, 0), b = new THREE.Vector3(.4, .4, 0); g.add(makeFermion(new THREE.Vector3(-1, -.8, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1, .8, 0), 0x5b8def)); g.add(makePhoton(new THREE.Vector3(-1, .4, 0), a, .06, 3, 28, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1, -.4, 0), .06, 3, 28, 0x00e5ff)); g.add(makeVtx(a, 0x3ae8b0, .045)); g.add(makeVtx(b, 0x3ae8b0, .045)) },
-      new THREE.Vector3(2, -1.5, -.8), { rx: .4, ry: .3, rz: .2, sx: .1, sy: .15, speed: 1.5 }, .4);
-
-    // D4: Vertex correction — lower left
-    addDiag(g => { const a = new THREE.Vector3(-.5, .3, 0), b = new THREE.Vector3(.5, .3, 0), c = new THREE.Vector3(0, -.5, 0); g.add(makeFermion(new THREE.Vector3(-1.2, .6, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1.2, .6, 0), 0x5b8def)); g.add(makePhoton(a, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(b, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(c, new THREE.Vector3(0, -1.2, 0), .06, 4, 28, 0x00e5ff)); g.add(makeVtx(a, 0x9678f6, .03)); g.add(makeVtx(b, 0x9678f6, .03)); g.add(makeVtx(c, 0xe06caa, .045)) },
-      new THREE.Vector3(-2, -1.8, -1.2), { rx: .35, ry: .6, rz: .12, sx: .18, sy: .08, speed: 1.1 }, .55);
-
-    // D5: Pair annihilation — far right (always visible)
-    addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(new THREE.Vector3(-.8, -.6, 0), v, 0x9678f6)); g.add(makePhoton(v, new THREE.Vector3(.9, .4, 0), .07, 3, 28, 0x00e5ff)); g.add(makePhoton(v, new THREE.Vector3(.9, -.4, 0), .07, 3, 28, 0x00e5ff)); g.add(makeVtx(v, 0x3ae8b0, .05)) },
-      new THREE.Vector3(3.2, -.3, .3), { rx: .25, ry: .35, rz: .18, sx: .2, sy: .12, speed: 1.4 }, 0);
-
-    // ════════════ MOUSE ════════════
-    let mx = 0, my = 0, mouseWorld = new THREE.Vector3(100, 100, 100);
-    const raycaster = new THREE.Raycaster(), mouseNDC = new THREE.Vector2();
-    document.addEventListener('mousemove', e => { mx = (e.clientX / W() - .5) * 2; my = (e.clientY / H() - .5) * 2; mouseNDC.x = mx; mouseNDC.y = -my; raycaster.setFromCamera(mouseNDC, cam); raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), mouseWorld) });
-
-    // ════════════ SCROLL ════════════
-    let sp = 0;
-    const fringes = document.getElementById('fringes'), hudEl = document.getElementById('hud');
-    const qsEl = document.getElementById('qs'), cohEl = document.getElementById('coh'), hfEl = document.getElementById('hfill');
-    const stLbl = ['|0⟩ coherent', 'H|0⟩ superposition', '|Φ⁺⟩ entangled', 'M ↦|0⟩ measured', 'ρ mixed · decohered'];
-    const stCol = [[0, .85, 1], [.36, .55, .94], [.59, .47, .96], [.23, .91, .69], [.38, .43, .56]];
-
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY, d = document.documentElement.scrollHeight - H(); sp = Math.max(0, Math.min(1, s / d)); hfEl.style.width = (sp * 100) + '%'; cohEl.textContent = Math.max(0, Math.round((1 - sp) * 100)) + '%'; const si = Math.min(4, Math.floor(sp * 5)); qsEl.textContent = stLbl[si]; const sc = stCol[si]; const qColor = `rgb(${sc[0] * 255 | 0},${sc[1] * 255 | 0},${sc[2] * 255 | 0})`; qsEl.style.color = qColor; if (s > 150 && sp < .92) hudEl.classList.add('on'); else hudEl.classList.remove('on'); if (sp > .15 && sp < .5) fringes.classList.add('on'); else fringes.classList.remove('on');
-      // Sync section titles with qubit state color
-      document.querySelectorAll('.q-tint').forEach(el => { el.style.color = qColor });
-    });
-
-    // ════════════ ANIMATE ════════════
-    let time = 0;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      time += .005;
-
-      const stage = sp * 4, si = Math.min(4, Math.floor(stage)), sf = stage - si;
-      const c1 = stCol[si], c2s = stCol[Math.min(4, si + 1)];
-      const cr = c1[0] + (c2s[0] - c1[0]) * sf, cg = c1[1] + (c2s[1] - c1[1]) * sf, cb = c1[2] + (c2s[2] - c1[2]) * sf;
-      const disp = Math.pow(sp, 1.5), chaos = Math.max(0, (sp - .6) / .4);
-      const superPhase = stage > .5 && stage < 2.5;
-      const pulse = superPhase ? Math.sin(time * 3) * .06 * (1 - chaos) : 0;
-      const split = (stage > 1.5 && stage < 3.5) ? Math.min(1, stage - 1.5) * (1 - Math.max(0, stage - 2.5)) : 0;
-      const rotSpd = .1 * (1 - chaos * .6);
-
-      trails.visible = superPhase && chaos < .5;
-
-      // Diagrams: each floats independently — wider drift, more tumble
-      const dp = .05 * Math.sin(time * 2.5);
-      diagrams.forEach(dg => {
-        const u = dg.userData;
-        if (u.showAt > 0) { dg.visible = sp > u.showAt; if (!dg.visible) return }
-        const t = time * u.orbit.speed;
-        dg.position.x = u.basePos.x + Math.sin(t * u.orbit.ry) * u.orbit.sx * 2.5;
-        dg.position.y = u.basePos.y + Math.cos(t * u.orbit.rx) * u.orbit.sy * 2.5;
-        dg.position.z = u.basePos.z + Math.sin(t * u.orbit.rz * .7) * .3;
-        dg.rotation.x = Math.sin(t * u.orbit.rx) * .25;
-        dg.rotation.y = Math.sin(t * u.orbit.ry) * .3;
-        dg.rotation.z = Math.sin(t * u.orbit.rz) * .15;
-        const baseOp = u.showAt > 0 ? Math.min(.5, (sp - u.showAt) * .9) : .35 + sp * .15;
-        dg.traverse(c => { if (c.material) c.material.opacity = baseOp + dp });
-      });
-
-      // Mouse in particle local space
-      const invMat = new THREE.Matrix4().copy(pts.matrixWorld).invert();
-      const localMouse = mouseWorld.clone().applyMatrix4(invMat);
-
-      for (let i = 0; i < N; i++) {
-        const i3 = i * 3; const bx = bpos[i3], by = bpos[i3 + 1], bz = bpos[i3 + 2];
-        if (i < TN) { tPos[i * 3] += (prevPos[i * 3] - tPos[i * 3]) * .02; tPos[i * 3 + 1] += (prevPos[i * 3 + 1] - tPos[i * 3 + 1]) * .02; tPos[i * 3 + 2] += (prevPos[i * 3 + 2] - tPos[i * 3 + 2]) * .02 }
-        prevPos[i3] = pos[i3]; prevPos[i3 + 1] = pos[i3 + 1]; prevPos[i3 + 2] = pos[i3 + 2];
-
-        let dx = bx + vel[i3] * disp * 300, dy = by + vel[i3 + 1] * disp * 300, dz = bz + vel[i3 + 2] * disp * 300;
-        const br = 1 + pulse, so = (i % 2 === 0 ? 1 : -1) * split;
-        const jx = chaos * Math.sin(time * 6 + ph[i]) * .22, jy = chaos * Math.sin(time * 2 + ph[i] * 1.3) * .14, jz = chaos * Math.cos(time * 3 + ph[i] * .7) * .1;
-        let fx = dx * br + so + jx, fy = dy * br + jy, fz = dz * br + jz;
-
-        // Observer effect
-        const ddx = fx - localMouse.x, ddy = fy - localMouse.y, ddz = fz - localMouse.z;
-        const dist = Math.sqrt(ddx * ddx + ddy * ddy + ddz * ddz);
-        if (dist < .9 && !isNaN(dist)) {
-          const str = .8 * (1 - dist / .9); const len = Math.sqrt(fx * fx + fy * fy + fz * fz);
-          if (len > .01) { const t = 1.05 / len; fx += (fx * t - fx) * str * .3; fy += (fy * t - fy) * str * .3; fz += (fz * t - fz) * str * .3 }
-          col[i3] = Math.min(1, cr + str * .4); col[i3 + 1] = Math.min(1, cg + str * .3); col[i3 + 2] = Math.min(1, cb + str * .2);
-          sz[i] = (1.5 + Math.random() * 2) * (1 + str * .3);
-        } else {
-          col[i3] = cr; col[i3 + 1] = cg; col[i3 + 2] = cb;
-          sz[i] = (1.5 + Math.random() * 2) * (1 - disp * .2 + Math.sin(time + ph[i]) * .04);
-        }
-        pos[i3] = fx; pos[i3 + 1] = fy; pos[i3 + 2] = fz;
-      }
-
-      geo.attributes.position.needsUpdate = true; geo.attributes.color.needsUpdate = true; geo.attributes.size.needsUpdate = true;
-      if (trails.visible) { tGeo.attributes.position.needsUpdate = true; for (let i = 0; i < TN; i++) { tCol[i * 3] = cr * .4; tCol[i * 3 + 1] = cg * .4; tCol[i * 3 + 2] = cb * .5 } tGeo.attributes.color.needsUpdate = true }
-      pts.rotation.y = time * rotSpd + mx * .08; pts.rotation.x = my * .04 + Math.sin(time * .2) * .02;
-      trails.rotation.copy(pts.rotation);
-      ring1.material.opacity = .12 * (1 - chaos); ring2.material.opacity = .08 * (1 - chaos);
-      ring1.rotation.y = time * .12; ring2.rotation.y = time * .1;
-
-      renderer.render(scene, cam);
-    }
-    animate();
-
-    window.addEventListener('resize', () => { cam.aspect = W() / H(); cam.updateProjectionMatrix(); renderer.setSize(W(), H()) });
-
-    // Scroll reveal
-    document.querySelectorAll('.sr').forEach(el => { new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add('v') }, { threshold: .08, rootMargin: '0px 0px -20px 0px' }).observe(el) });
-    document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }) } }) });
-    document.querySelectorAll('.gallery-row').forEach(row => {
-      const card = row.closest('.beyond-card');
-      const dots = card.querySelector('.gallery-dots');
-      if (!dots) return;
-      const slots = row.querySelectorAll('.gallery-slot');
-
-      // Auto-generate dots based on actual image count
-      dots.innerHTML = '';
-      slots.forEach((_, i) => {
-        const span = document.createElement('span');
-        if (i === 0) span.classList.add('active');
-        span.addEventListener('click', () => {
-          row.scrollTo({ left: row.offsetWidth * i, behavior: 'smooth' });
-        });
-        dots.appendChild(span);
-      });
-
-      row.addEventListener('scroll', () => {
-        const idx = Math.round(row.scrollLeft / row.offsetWidth);
-        dots.querySelectorAll('span').forEach((s, i) => s.classList.toggle('active', i === idx));
-      });
-    });
-
+    // ═══ LIGHTBOX ═══
     const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
     let lbSlots = [], lbIdx = 0;
 
@@ -1689,9 +1450,235 @@
       if (e.key === 'ArrowLeft') lbNav(-1);
       if (e.key === 'ArrowRight') lbNav(1);
     });
+
     document.querySelectorAll('.gallery-slot').forEach(slot => {
       slot.addEventListener('click', () => openLightbox(slot));
     });
+
+    // ═══ GALLERY SCROLL DOTS ═══
+    document.querySelectorAll('.gallery-row').forEach(row => {
+      const card = row.closest('.beyond-card');
+      const dots = card.querySelector('.gallery-dots');
+      if (!dots) return;
+      const spans = dots.querySelectorAll('span');
+      row.addEventListener('scroll', () => {
+        const idx = Math.round(row.scrollLeft / row.offsetWidth);
+        spans.forEach((s, i) => s.classList.toggle('active', i === idx));
+      });
+      // Click dots to scroll
+      spans.forEach((s, i) => {
+        s.addEventListener('click', () => { row.scrollTo({ left: row.offsetWidth * i, behavior: 'smooth' }) });
+      });
+    });
+
+    // ═══ DOUBLE-SLIT EXPERIMENT (localStorage) ═══
+    (function () {
+      const cv = document.getElementById('dslit-canvas');
+      if (!cv) return;
+      const ctx = cv.getContext('2d');
+      const KEY = 'dslit_photons';
+
+      // Load existing photon hits
+      let photons = [];
+      try { photons = JSON.parse(localStorage.getItem(KEY)) || [] } catch (e) { photons = [] }
+
+      // Add new photon(s) for this visit — quantum random via double-slit probability
+      // P(x) = cos²(π·d·x / (λ·L)) — interference pattern
+      function sampleDoubleSlit() {
+        // Rejection sampling from cos²(kx) distribution
+        const k = 8; // fringe frequency
+        let x;
+        do { x = Math.random() * 2 - 1; } while (Math.random() > Math.pow(Math.cos(k * x), 2));
+        return x;
+      }
+
+      // Fire 3 photons per visit for faster buildup
+      for (let i = 0; i < 3; i++) {
+        photons.push(sampleDoubleSlit());
+      }
+      // Cap at 2000 photons to keep localStorage small
+      if (photons.length > 2000) photons = photons.slice(-2000);
+      try { localStorage.setItem(KEY, JSON.stringify(photons)) } catch (e) { }
+
+      function draw() {
+        const dpr = Math.min(window.devicePixelRatio, 2);
+        const w = cv.offsetWidth, h = cv.offsetHeight;
+        cv.width = w * dpr; cv.height = h * dpr;
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw photon hits as dots building interference pattern
+        const bins = new Float32Array(w);
+        photons.forEach(x => {
+          const px = Math.round((x + 1) / 2 * w);
+          if (px >= 0 && px < w) bins[px]++;
+        });
+
+        // Find max for normalization
+        let maxBin = 1;
+        for (let i = 0; i < w; i++)if (bins[i] > maxBin) maxBin = bins[i];
+
+        // Draw histogram bars
+        for (let i = 0; i < w; i++) {
+          const val = bins[i] / maxBin;
+          if (val > 0) {
+            const barH = val * h * 0.85;
+            const alpha = 0.3 + val * 0.7;
+            ctx.fillStyle = `rgba(0,229,255,${alpha})`;
+            ctx.fillRect(i, h - barH, 1, barH);
+          }
+        }
+
+        // Draw ideal cos² curve overlay
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(150,120,246,0.3)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i < w; i++) {
+          const x = (i / w) * 2 - 1;
+          const v = Math.pow(Math.cos(8 * x), 2);
+          const y = h - v * h * 0.85;
+          if (i === 0) ctx.moveTo(i, y); else ctx.lineTo(i, y);
+        }
+        ctx.stroke();
+
+        // Slit indicators
+        ctx.fillStyle = 'rgba(100,170,255,0.15)';
+        const slitW = 3, slitGap = w * 0.08;
+        ctx.fillRect(w / 2 - slitGap - slitW / 2, 0, slitW, h);
+        ctx.fillRect(w / 2 + slitGap - slitW / 2, 0, slitW, h);
+      }
+
+      draw();
+      window.addEventListener('resize', draw);
+
+      document.getElementById('ds-count').textContent = photons.length;
+      document.getElementById('ds-pattern').textContent = photons.length > 50 ? 'interference visible' : 'building...';
+    })();
+
+    // ═══ THREE.JS QUANTUM FIELD ═══
+    const canvas = document.getElementById('c3');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(W(), H()); renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(50, W() / H(), 0.1, 100);
+    cam.position.set(0, 0, 4.5);
+
+    const N = 1600; const geo = new THREE.BufferGeometry();
+    const pos = new Float32Array(N * 3), bpos = new Float32Array(N * 3), vel = new Float32Array(N * 3), col = new Float32Array(N * 3), sz = new Float32Array(N), ph = new Float32Array(N), prevPos = new Float32Array(N * 3);
+    for (let i = 0; i < N; i++) { const th = Math.random() * Math.PI * 2, phi = Math.acos(2 * Math.random() - 1), r = 1 + Math.random() * .15; const x = r * Math.sin(phi) * Math.cos(th), y = r * Math.sin(phi) * Math.sin(th), z = r * Math.cos(phi); pos[i * 3] = bpos[i * 3] = prevPos[i * 3] = x; pos[i * 3 + 1] = bpos[i * 3 + 1] = prevPos[i * 3 + 1] = y; pos[i * 3 + 2] = bpos[i * 3 + 2] = prevPos[i * 3 + 2] = z; vel[i * 3] = (Math.random() - .5) * .0025; vel[i * 3 + 1] = (Math.random() - .5) * .0025; vel[i * 3 + 2] = (Math.random() - .5) * .0025; col[i * 3] = 0; col[i * 3 + 1] = .85; col[i * 3 + 2] = 1; sz[i] = 1.5 + Math.random() * 2; ph[i] = Math.random() * Math.PI * 2 }
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3)); geo.setAttribute('size', new THREE.BufferAttribute(sz, 1));
+
+    const ptMat = new THREE.ShaderMaterial({
+      vertexShader: `attribute float size;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_PointSize=size*(100./-mv.z);gl_Position=projectionMatrix*mv;}`,
+      fragmentShader: `varying vec3 vC;void main(){float d=length(gl_PointCoord-vec2(.5));if(d>.5)discard;float core=1.-smoothstep(0.,.18,d);float halo=1.-smoothstep(.1,.5,d);gl_FragColor=vec4(vC,core*.7+halo*.15);}`,
+      transparent: true, depthWrite: false, blending: THREE.NormalBlending
+    });
+    const pts = new THREE.Points(geo, ptMat); pts.position.set(.6, 0, 0); scene.add(pts);
+
+    const ringGeo = new THREE.TorusGeometry(1.1, .008, 8, 80);
+    const ring1 = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .15 }));
+    ring1.position.set(.6, 0, 0); ring1.rotation.x = Math.PI / 2; scene.add(ring1);
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.1, .008, 8, 80), new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .1 }));
+    ring2.position.set(.6, 0, 0); ring2.rotation.x = Math.PI / 4; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
+
+    const TN = 600; const tGeo = new THREE.BufferGeometry();
+    const tPos = new Float32Array(TN * 3), tCol = new Float32Array(TN * 3), tSz = new Float32Array(TN);
+    for (let i = 0; i < TN; i++) { tPos[i * 3] = pos[i * 3]; tPos[i * 3 + 1] = pos[i * 3 + 1]; tPos[i * 3 + 2] = pos[i * 3 + 2]; tCol[i * 3] = 0; tCol[i * 3 + 1] = .5; tCol[i * 3 + 2] = .8; tSz[i] = .8 + Math.random() }
+    tGeo.setAttribute('position', new THREE.BufferAttribute(tPos, 3)); tGeo.setAttribute('color', new THREE.BufferAttribute(tCol, 3)); tGeo.setAttribute('size', new THREE.BufferAttribute(tSz, 1));
+    const trailMat = new THREE.ShaderMaterial({
+      vertexShader: `attribute float size;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_PointSize=size*(80./-mv.z);gl_Position=projectionMatrix*mv;}`,
+      fragmentShader: `varying vec3 vC;void main(){float d=length(gl_PointCoord-vec2(.5));if(d>.5)discard;gl_FragColor=vec4(vC,smoothstep(.5,.1,d)*.2);}`,
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+    });
+    const trails = new THREE.Points(tGeo, trailMat); trails.visible = false; trails.position.set(.6, 0, 0); scene.add(trails);
+
+    function makePhoton(s, e, amp, freq, segs, hex) { const dir = new THREE.Vector3().subVectors(e, s); const len = dir.length(); dir.normalize(); const up = new THREE.Vector3(0, 1, 0); if (Math.abs(dir.dot(up)) > .99) up.set(1, 0, 0); const perp = new THREE.Vector3().crossVectors(dir, up).normalize(); const v = []; for (let i = 0; i <= segs; i++) { const t = i / segs; const b = new THREE.Vector3().copy(s).addScaledVector(dir, t * len); b.addScaledVector(perp, Math.sin(t * Math.PI * 2 * freq) * amp); v.push(b) } return new THREE.Line(new THREE.BufferGeometry().setFromPoints(v), new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .4 })) }
+    function makeFermion(s, e, hex) { const g = new THREE.BufferGeometry().setFromPoints([s, e]); const l = new THREE.Line(g, new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .35 })); const mid = new THREE.Vector3().lerpVectors(s, e, .55); const d = new THREE.Vector3().subVectors(e, s).normalize(); const up = new THREE.Vector3(0, 1, 0); if (Math.abs(d.dot(up)) > .99) up.set(1, 0, 0); const p = new THREE.Vector3().crossVectors(d, up).normalize(); const ag = new THREE.BufferGeometry().setFromPoints([mid.clone().addScaledVector(d, -.07).addScaledVector(p, .035), mid.clone(), mid.clone().addScaledVector(d, -.07).addScaledVector(p, -.035)]); const grp = new THREE.Group(); grp.add(l); grp.add(new THREE.Line(ag, new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: .5 }))); return grp }
+    function makeVtx(p, hex, r) { const m = new THREE.Mesh(new THREE.SphereGeometry(r || .04, 10, 10), new THREE.MeshBasicMaterial({ color: hex, transparent: true, opacity: .6 })); m.position.copy(p); return m }
+
+    const diagrams = [];
+    function addDiag(buildFn, basePos, orbit, showAt) { const g = new THREE.Group(); buildFn(g); g.position.copy(basePos); g.userData = { orbit, showAt, basePos: basePos.clone() }; scene.add(g); diagrams.push(g); if (showAt > 0) g.visible = false }
+
+    addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(v, new THREE.Vector3(.8, .4, 0), 0x5b8def)); g.add(makePhoton(v, new THREE.Vector3(0, -.9, 0), .08, 3, 32, 0x00e5ff)); g.add(makeVtx(v, 0x00e5ff, .05)) }, new THREE.Vector3(-2.5, 1.5, -1), { rx: .3, ry: .5, rz: .1, sx: .15, sy: .1, speed: 1.8 }, 0);
+    addDiag(g => { const a = new THREE.Vector3(-.6, 0, 0), b = new THREE.Vector3(.6, 0, 0); g.add(makePhoton(new THREE.Vector3(-1.4, 0, 0), a, .06, 3, 24, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1.4, 0, 0), .06, 3, 24, 0x00e5ff)); const lp = []; for (let i = 0; i <= 48; i++) { const t = i / 48 * Math.PI * 2; lp.push(new THREE.Vector3(Math.cos(t) * .6, Math.sin(t) * .4, 0)) } g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(lp), new THREE.LineBasicMaterial({ color: 0x9678f6, transparent: true, opacity: .35 }))); g.add(makeVtx(a, 0x9678f6, .04)); g.add(makeVtx(b, 0x9678f6, .04)) }, new THREE.Vector3(2.8, .8, -.5), { rx: .2, ry: .4, rz: .15, sx: .12, sy: .18, speed: 1.3 }, .2);
+    addDiag(g => { const a = new THREE.Vector3(-.4, -.4, 0), b = new THREE.Vector3(.4, .4, 0); g.add(makeFermion(new THREE.Vector3(-1, -.8, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1, .8, 0), 0x5b8def)); g.add(makePhoton(new THREE.Vector3(-1, .4, 0), a, .06, 3, 28, 0x00e5ff)); g.add(makePhoton(b, new THREE.Vector3(1, -.4, 0), .06, 3, 28, 0x00e5ff)); g.add(makeVtx(a, 0x3ae8b0, .045)); g.add(makeVtx(b, 0x3ae8b0, .045)) }, new THREE.Vector3(2, -1.5, -.8), { rx: .4, ry: .3, rz: .2, sx: .1, sy: .15, speed: 1.5 }, .4);
+    addDiag(g => { const a = new THREE.Vector3(-.5, .3, 0), b = new THREE.Vector3(.5, .3, 0), c = new THREE.Vector3(0, -.5, 0); g.add(makeFermion(new THREE.Vector3(-1.2, .6, 0), a, 0x5b8def)); g.add(makeFermion(a, b, 0x5b8def)); g.add(makeFermion(b, new THREE.Vector3(1.2, .6, 0), 0x5b8def)); g.add(makePhoton(a, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(b, c, .04, 3, 22, 0x00e5ff)); g.add(makePhoton(c, new THREE.Vector3(0, -1.2, 0), .06, 4, 28, 0x00e5ff)); g.add(makeVtx(a, 0x9678f6, .03)); g.add(makeVtx(b, 0x9678f6, .03)); g.add(makeVtx(c, 0xe06caa, .045)) }, new THREE.Vector3(-2, -1.8, -1.2), { rx: .35, ry: .6, rz: .12, sx: .18, sy: .08, speed: 1.1 }, .55);
+    addDiag(g => { const v = new THREE.Vector3(0, 0, 0); g.add(makeFermion(new THREE.Vector3(-.8, .6, 0), v, 0x5b8def)); g.add(makeFermion(new THREE.Vector3(-.8, -.6, 0), v, 0x9678f6)); g.add(makePhoton(v, new THREE.Vector3(.9, .4, 0), .07, 3, 28, 0x00e5ff)); g.add(makePhoton(v, new THREE.Vector3(.9, -.4, 0), .07, 3, 28, 0x00e5ff)); g.add(makeVtx(v, 0x3ae8b0, .05)) }, new THREE.Vector3(3.2, -.3, .3), { rx: .25, ry: .35, rz: .18, sx: .2, sy: .12, speed: 1.4 }, 0);
+
+    let mx = 0, my = 0, mouseWorld = new THREE.Vector3(100, 100, 100);
+    const raycaster = new THREE.Raycaster(), mouseNDC = new THREE.Vector2();
+    document.addEventListener('mousemove', e => { mx = (e.clientX / W() - .5) * 2; my = (e.clientY / H() - .5) * 2; mouseNDC.x = mx; mouseNDC.y = -my; raycaster.setFromCamera(mouseNDC, cam); raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), mouseWorld) });
+
+    let sp = 0;
+    const fringes = document.getElementById('fringes'), hudEl = document.getElementById('hud');
+    const qsEl = document.getElementById('qs'), cohEl = document.getElementById('coh'), hfEl = document.getElementById('hfill');
+    const stLbl = ['|0⟩ coherent', 'H|0⟩ superposition', '|Φ⁺⟩ entangled', 'M ↦|0⟩ measured', 'ρ mixed · decohered'];
+    const stCol = [[0, .85, 1], [.36, .55, .94], [.59, .47, .96], [.23, .91, .69], [.38, .43, .56]];
+
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY, d = document.documentElement.scrollHeight - H(); sp = Math.max(0, Math.min(1, s / d));
+      hfEl.style.width = (sp * 100) + '%'; cohEl.textContent = Math.max(0, Math.round((1 - sp) * 100)) + '%';
+      const si = Math.min(4, Math.floor(sp * 5)); qsEl.textContent = stLbl[si];
+      const sc = stCol[si]; const qColor = `rgb(${sc[0] * 255 | 0},${sc[1] * 255 | 0},${sc[2] * 255 | 0})`;
+      qsEl.style.color = qColor;
+      if (s > 150 && sp < .92) hudEl.classList.add('on'); else hudEl.classList.remove('on');
+      if (sp > .15 && sp < .5) fringes.classList.add('on'); else fringes.classList.remove('on');
+      document.querySelectorAll('.q-tint').forEach(el => { el.style.color = qColor });
+    });
+
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate); time += .005;
+      const stage = sp * 4, si = Math.min(4, Math.floor(stage)), sf = stage - si;
+      const c1 = stCol[si], c2s = stCol[Math.min(4, si + 1)];
+      const cr = c1[0] + (c2s[0] - c1[0]) * sf, cg = c1[1] + (c2s[1] - c1[1]) * sf, cb = c1[2] + (c2s[2] - c1[2]) * sf;
+      const disp = Math.pow(sp, 1.5), chaos = Math.max(0, (sp - .6) / .4);
+      const superPhase = stage > .5 && stage < 2.5;
+      const pulse = superPhase ? Math.sin(time * 3) * .06 * (1 - chaos) : 0;
+      const split = (stage > 1.5 && stage < 3.5) ? Math.min(1, stage - 1.5) * (1 - Math.max(0, stage - 2.5)) : 0;
+      const rotSpd = .1 * (1 - chaos * .6);
+
+      trails.visible = superPhase && chaos < .5;
+
+      const dp = .05 * Math.sin(time * 2.5);
+      diagrams.forEach(dg => {
+        const u = dg.userData; if (u.showAt > 0) { dg.visible = sp > u.showAt; if (!dg.visible) return }
+        const t = time * u.orbit.speed;
+        dg.position.x = u.basePos.x + Math.sin(t * u.orbit.ry) * u.orbit.sx * 2.5;
+        dg.position.y = u.basePos.y + Math.cos(t * u.orbit.rx) * u.orbit.sy * 2.5;
+        dg.position.z = u.basePos.z + Math.sin(t * u.orbit.rz * .7) * .3;
+        dg.rotation.x = Math.sin(t * u.orbit.rx) * .25; dg.rotation.y = Math.sin(t * u.orbit.ry) * .3; dg.rotation.z = Math.sin(t * u.orbit.rz) * .15;
+        const baseOp = u.showAt > 0 ? Math.min(.5, (sp - u.showAt) * .9) : .35 + sp * .15;
+        dg.traverse(c => { if (c.material) c.material.opacity = baseOp + dp });
+      });
+
+      const invMat = new THREE.Matrix4().copy(pts.matrixWorld).invert(); const localMouse = mouseWorld.clone().applyMatrix4(invMat);
+      for (let i = 0; i < N; i++) {
+        const i3 = i * 3; const bx = bpos[i3], by = bpos[i3 + 1], bz = bpos[i3 + 2];
+        if (i < TN) { tPos[i * 3] += (prevPos[i * 3] - tPos[i * 3]) * .02; tPos[i * 3 + 1] += (prevPos[i * 3 + 1] - tPos[i * 3 + 1]) * .02; tPos[i * 3 + 2] += (prevPos[i * 3 + 2] - tPos[i * 3 + 2]) * .02 }
+        prevPos[i3] = pos[i3]; prevPos[i3 + 1] = pos[i3 + 1]; prevPos[i3 + 2] = pos[i3 + 2];
+        let dx = bx + vel[i3] * disp * 300, dy = by + vel[i3 + 1] * disp * 300, dz = bz + vel[i3 + 2] * disp * 300;
+        const br = 1 + pulse, so = (i % 2 === 0 ? 1 : -1) * split;
+        const jx = chaos * Math.sin(time * 6 + ph[i]) * .22, jy = chaos * Math.sin(time * 2 + ph[i] * 1.3) * .14, jz = chaos * Math.cos(time * 3 + ph[i] * .7) * .1;
+        let fx = dx * br + so + jx, fy = dy * br + jy, fz = dz * br + jz;
+        const ddx = fx - localMouse.x, ddy = fy - localMouse.y, ddz = fz - localMouse.z; const dist = Math.sqrt(ddx * ddx + ddy * ddy + ddz * ddz);
+        if (dist < .9 && !isNaN(dist)) { const str = .8 * (1 - dist / .9); const len = Math.sqrt(fx * fx + fy * fy + fz * fz); if (len > .01) { const t = 1.05 / len; fx += (fx * t - fx) * str * .3; fy += (fy * t - fy) * str * .3; fz += (fz * t - fz) * str * .3 } col[i3] = Math.min(1, cr + str * .4); col[i3 + 1] = Math.min(1, cg + str * .3); col[i3 + 2] = Math.min(1, cb + str * .2); sz[i] = (1.5 + Math.random() * 2) * (1 + str * .3) }
+        else { col[i3] = cr; col[i3 + 1] = cg; col[i3 + 2] = cb; sz[i] = (1.5 + Math.random() * 2) * (1 - disp * .2 + Math.sin(time + ph[i]) * .04) }
+        pos[i3] = fx; pos[i3 + 1] = fy; pos[i3 + 2] = fz;
+      }
+      geo.attributes.position.needsUpdate = true; geo.attributes.color.needsUpdate = true; geo.attributes.size.needsUpdate = true;
+      if (trails.visible) { tGeo.attributes.position.needsUpdate = true; for (let i = 0; i < TN; i++) { tCol[i * 3] = cr * .4; tCol[i * 3 + 1] = cg * .4; tCol[i * 3 + 2] = cb * .5 } tGeo.attributes.color.needsUpdate = true }
+      pts.rotation.y = time * rotSpd + mx * .08; pts.rotation.x = my * .04 + Math.sin(time * .2) * .02;
+      trails.rotation.copy(pts.rotation);
+      ring1.material.opacity = .12 * (1 - chaos); ring2.material.opacity = .08 * (1 - chaos);
+      ring1.rotation.y = time * .12; ring2.rotation.y = time * .1;
+      renderer.render(scene, cam);
+    }
+    animate();
+
+    window.addEventListener('resize', () => { cam.aspect = W() / H(); cam.updateProjectionMatrix(); renderer.setSize(W(), H()) });
+    document.querySelectorAll('.sr').forEach(el => { new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add('v') }, { threshold: .08, rootMargin: '0px 0px -20px 0px' }).observe(el) });
+    document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }) } }) });
   </script>
 </body>
 
