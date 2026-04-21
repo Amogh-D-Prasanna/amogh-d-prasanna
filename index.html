@@ -1153,9 +1153,8 @@
           <div class="pull">That same day, I made a decision: I would go deeper into the very field that challenged me
             most, to understand what lies beyond it.</div>
           <p>That stubbornness carried me from classical computation into the quantum world, where <em>Turing's limits
-              meet Feynman's dreams</em>. <i>Currently,</i> I'm a Research Assistant at UMD, working and researching on
-            <strong>Quantum Information Processing and Theory of Computation</strong>. The subject that once humbled me
-            became the subject I now push forward.
+              meet Feynman's dreams</em>. <i>Currently,</i> I'm a student Research Assistant at UMD, College Park. My main research interests are
+            <strong>Quantum Information Processing, Quantum Error Correction and Quantum Machine Learning.</strong>
           </p>
 
         </div>
@@ -1464,7 +1463,8 @@
       transparent: true, depthWrite: false, blending: THREE.NormalBlending
     });
     const pts = new THREE.Points(geo, ptMat);
-    pts.position.set(0.6, 0, 0);
+    const sphereX = W() < 768 ? 0 : 0.6;
+    pts.position.set(sphereX, 0, 0);
     scene.add(pts);
 
     // // Orbital outlines (thin circles, no solid lines)
@@ -1479,9 +1479,9 @@
     const ringGeo = new THREE.TorusGeometry(1.1, .008, 8, 80);
     const ringMat = new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .15 });
     const ring1 = new THREE.Mesh(ringGeo, ringMat);
-    ring1.position.set(.6, 0, 0); ring1.rotation.x = Math.PI / 2; scene.add(ring1);
+    ring1.position.set(sphereX, 0, 0); ring1.rotation.x = Math.PI / 2; scene.add(ring1);
     const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.1, .008, 8, 80), new THREE.MeshBasicMaterial({ color: 0x4488ff, transparent: true, opacity: .1 }));
-    ring2.position.set(.6, 0, 0); ring2.rotation.x = Math.PI / 4; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
+    ring2.position.set(sphereX, 0, 0); ring2.rotation.x = Math.PI / 4; ring2.rotation.z = Math.PI / 5; scene.add(ring2);
 
     // ════════════ TRAILS ════════════
     const TN = 600;
@@ -1494,7 +1494,7 @@
       fragmentShader: `varying vec3 vC;void main(){float d=length(gl_PointCoord-vec2(.5));if(d>.5)discard;gl_FragColor=vec4(vC,smoothstep(.5,.1,d)*.2);}`,
       transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
     });
-    const trails = new THREE.Points(tGeo, trailMat); trails.visible = false; trails.position.set(.6, 0, 0); scene.add(trails);
+    const trails = new THREE.Points(tGeo, trailMat); trails.visible = false; trails.position.set(sphereX, 0, 0); scene.add(trails);
 
     // ════════════ FEYNMAN DIAGRAMS — EACH FLOATS INDEPENDENTLY ════════════
     function makePhoton(s, e, amp, freq, segs, hex) {
